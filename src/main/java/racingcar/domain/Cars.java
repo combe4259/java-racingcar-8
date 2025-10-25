@@ -7,14 +7,23 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars){
+    private Cars(List<Car> cars){
         this.cars = new ArrayList<>(cars);
     }
 
-    public Cars from(List<String> names){
-        for (String name : names){
-            cars.add(new Car(name));
+    public static Cars createCars(String namesInput){
+        List<String> namesList = Arrays.stream(namesInput.split(","))
+                .map(String::trim)
+                .toList();
+        return Cars.from(namesList);
+    }
+
+    public static Cars from(List<String> namesList){
+        List<Car> carList = new ArrayList<>();
+        for (String name : namesList){
+            CarName carname = new CarName(name);
+            carList.add(new Car(carname.getValue()));
         }
-        return new Cars(cars);
+        return new Cars(carList);
     }
 }

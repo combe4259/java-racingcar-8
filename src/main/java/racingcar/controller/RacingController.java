@@ -12,16 +12,11 @@ public class RacingController {
 
     public void run(){
         String namesInput = inputView.readCarNames();
-        Cars cars = createCars(namesInput);
+        Cars cars = Cars.createCars(namesInput);
         int count = inputView.readRacingCount();
         outputView.printRacing();
         outputView.printWinner();
     }
 
-    private Cars createCars(String namesInput){
-        List<String> names = Arrays.stream(namesInput.split(","))
-                .map(String::trim)
-                .toList();
-        return Cars.from(names);
-    }
+
 }
