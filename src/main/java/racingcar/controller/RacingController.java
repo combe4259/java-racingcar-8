@@ -14,7 +14,10 @@ public class RacingController {
         String namesInput = inputView.readCarNames();
         Cars cars = Cars.createCars(namesInput);
         int count = inputView.readRacingCount();
-        outputView.printRacing();
+        for (int i=0; i < count; i++){
+            cars.race();
+            outputView.printRacing(cars);
+        }
         outputView.printWinner();
     }
 

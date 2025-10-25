@@ -7,6 +7,10 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
+    public List<Car> getCars(){
+        return this.cars;
+    }
+
     private Cars(List<Car> cars){
         this.cars = new ArrayList<>(cars);
     }
@@ -17,13 +21,17 @@ public class Cars {
                 .toList();
         return Cars.from(namesList);
     }
-
     public static Cars from(List<String> namesList){
         List<Car> carList = new ArrayList<>();
         for (String name : namesList){
-            CarName carname = new CarName(name);
-            carList.add(new Car(carname.getValue()));
+            carList.add(new Car(name));
         }
         return new Cars(carList);
+    }
+
+    public void race(){
+        for(Car car : this.cars){
+            car.move();
+        }
     }
 }
