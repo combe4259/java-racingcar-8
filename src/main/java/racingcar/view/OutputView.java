@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
@@ -21,8 +22,11 @@ public class OutputView {
     /*
    FIXME: 실제 우승자 이름을 출력하도록 변경
     */
-    public void printWinner(){
+    public void printWinner(List<String> winners){
         System.out.print("최종 우승자");
+        for (String winner : winners){
+            System.out.print(winner);
+        }
     }
 
 

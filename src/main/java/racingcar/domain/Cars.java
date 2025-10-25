@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Cars {
     private final List<Car> cars;
@@ -34,4 +35,21 @@ public class Cars {
             car.move();
         }
     }
+
+    public List<String> findWinners(){
+        int maxPosition = findMaxPosition();
+        return this.cars.stream()
+                .filter(car -> car.getPosition()==maxPosition)
+                .map(car -> car.getName().getValue())
+                .toList();
+    }
+    private int findMaxPosition(){
+        return this.cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
+
+
+
 }

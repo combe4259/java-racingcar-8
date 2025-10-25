@@ -17,8 +17,9 @@ public class RacingController {
         for (int i=0; i < count; i++){
             cars.race();
             outputView.printRacing(cars);
+
         }
-        outputView.printWinner();
+        outputView.printWinner(cars.findWinners());
     }
 
 
