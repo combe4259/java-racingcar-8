@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class Cars {
     private final List<Car> cars;
 
     public List<Car> getCars(){
         return this.cars;
+    }
+
+    public void forEach(Consumer<Car> action) {
+        this.cars.forEach(action);
+    }
+
+    public int size() {
+        return this.cars.size();
     }
 
     private Cars(List<Car> cars){
