@@ -11,7 +11,7 @@ public class OutputView {
     public void printRacing(Cars cars){
         System.out.println("실행 결과");
         for (Car car : cars.getCars()){
-            System.out.print(car.getName() + " : ");
+            System.out.print(car.getName().getValue() + " : ");
             int count = car.getPosition();
             while(count-- > 0){
                 System.out.print("-");

@@ -7,8 +7,12 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
+    public RacingController(){
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+    }
 
     public void run(){
         String namesInput = inputView.readCarNames();
