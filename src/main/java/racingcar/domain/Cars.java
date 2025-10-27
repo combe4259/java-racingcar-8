@@ -8,11 +8,13 @@ import java.util.function.Consumer;
 
 public class Cars {
     private final List<Car> cars;
-
-    public List<Car> getCars(){
-        return this.cars;
+    private Cars(List<Car> cars){
+        this.cars = new ArrayList<>(cars);
     }
-
+    /*
+    getter 없이 외부에서 접근 하여 List의 각 Car에 접근할 수 있도록 interface를 이용하는 위임 메서드
+    @Param action : List<Car>에서 할 수 있는 행동
+     */
     public void forEach(Consumer<Car> action) {
         this.cars.forEach(action);
     }
@@ -21,13 +23,11 @@ public class Cars {
         return this.cars.size();
     }
 
-    private Cars(List<Car> cars){
-        this.cars = new ArrayList<>(cars);
-    }
-
     public static Cars createCars(String namesInput){
+        if(namesInput == null){
+            throw new IllegalArgumentException("null을 입력할 수 없습니다.");
+        }
         List<String> namesList = Arrays.stream(namesInput.split(","))
-                .map(String::trim)
                 .toList();
         return Cars.from(namesList);
     }
@@ -49,7 +49,7 @@ public class Cars {
         int maxPosition = findMaxPosition();
         return this.cars.stream()
                 .filter(car -> car.getPosition()==maxPosition)
-                .map(car -> car.getName().getValue())
+                .map(Car::getNameValue)
                 .toList();
     }
     private int findMaxPosition(){
@@ -58,7 +58,4 @@ public class Cars {
                 .max()
                 .orElse(0);
     }
-
-
-
 }

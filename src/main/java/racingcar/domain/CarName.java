@@ -10,6 +10,9 @@ public class CarName {
     }
 
     private void validateName(String value){
+        if(value == null || value.isEmpty()){
+            throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
+        }
         if(value.length() > MAX_NAME_LENGTH){
             throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
         }
